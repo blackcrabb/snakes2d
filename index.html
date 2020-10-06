@@ -4,15 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snakes</title>
+    <style>
+        .container{
+            margin-left: 25rem;
+            margin-right: 5rem;
+        }
+
+        body{
+            background-color: rgb(177, 209, 206);
+        }
+        button{
+            padding: 1rem;
+        }
+    </style>
 </head>
 <body>
+    <h1 align="center">SNAKES</h1>
+    <div class="container">
     <canvas id="gc" width="400" height="400"></canvas>
+    <br>
+    <button onclick="reload()">RESET</button>
+    </div>
     <script>
     window.onload=function() {
         canv=document.getElementById("gc");
         ctx=canv.getContext("2d");
         document.addEventListener("keydown",keyPush);
         setInterval(game,1000/15);
+    }
+    function reload(){
+        px=py=10;
+        gs=tc=20;
+        ax=ay=15;
+        xv=yv=0;
+        trail=[];
+        tail = 5;
     }
     px=py=10;
     gs=tc=20;
