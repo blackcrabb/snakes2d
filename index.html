@@ -10,6 +10,15 @@
             margin-right: 5rem;
         }
 
+        .score {
+          display: flex;
+        }
+
+        .score p {
+          margin-top: 1.2rem;
+          margin-left: 1rem;
+        }
+
         body{
             background-color: rgb(177, 209, 206);
         }
@@ -24,6 +33,10 @@
     <canvas id="gc" width="400" height="400"></canvas>
     <br>
     <button onclick="reload()">RESET</button>
+    <div class="score">
+        <h3>Score:</h3>
+        <p>0</p>
+    </div>
     </div>
     <script>
     window.onload=function() {
@@ -39,6 +52,7 @@
         xv=yv=0;
         trail=[];
         tail = 5;
+        updateScore()
     }
     px=py=10;
     gs=tc=20;
@@ -77,12 +91,23 @@
         }
      
         if(ax==px && ay==py) {
+            updateScore('score')
             tail++;
             ax=Math.floor(Math.random()*tc);
             ay=Math.floor(Math.random()*tc);
         }
         ctx.fillStyle="red";
         ctx.fillRect(ax*gs,ay*gs,gs-2,gs-2);
+    }
+    function updateScore(action) {
+      let x = document.querySelector('.score p')
+      let score = Number(x.textContent)
+      
+      if (action === 'score') {
+        x.textContent = score += 1;
+      } else {
+        x.textContent = 0;
+      }
     }
     function keyPush(evt) {
         switch(evt.keyCode) {
